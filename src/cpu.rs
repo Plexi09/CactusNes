@@ -13,7 +13,7 @@ impl CPU {
         }
     }
 
-    pub fn intercept(&mut self, program: Vec<u8>) {
+    pub fn interpret(&mut self, program: Vec<u8>) {
         self.program_counter = 0;
 
         loop {
@@ -37,6 +37,9 @@ impl CPU {
                     } else {
                         self.status = self.status & 0b0111_1111;
                     }
+                }
+                0x00 => {
+                    return;
                 }
                 _ => todo!()
             }
